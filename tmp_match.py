@@ -9,9 +9,9 @@ import cv2
 import numpy as np
 from matplotlib import pyplot as plt
 
-img = cv2.imread('ring_cad1.jpg',0)
+img = cv2.imread('hdr1.jpg',0)
 img2 = img.copy()
-template = cv2.imread('uzorak2.jpg',0)
+template = cv2.imread('hdr1_uzorak.jpg',0)
 w, h = template.shape[::-1]
 
 # All the 6 methods for comparison in a list
