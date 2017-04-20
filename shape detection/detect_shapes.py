@@ -57,7 +57,7 @@ args = vars(ap.parse_args())
 # load the image and resize it to a smaller factor so that
 # the shapes can be approximated better
 #image = cv2.imread(args["image"])
-image = cv2.imread("ring_cad1.jpg")
+image = cv2.imread("Img1.jpg")
 
 resized = imutils.resize(image, width=300)
 ratio = image.shape[0] / float(resized.shape[0])
@@ -66,7 +66,7 @@ ratio = image.shape[0] / float(resized.shape[0])
 # and threshold it
 gray = cv2.cvtColor(resized, cv2.COLOR_BGR2GRAY)
 blurred = cv2.GaussianBlur(gray, (5,5), 0)
-thresh = cv2.threshold(blurred, 160, 255, cv2.THRESH_BINARY)[1]
+thresh = cv2.threshold(blurred, 140, 100, cv2.THRESH_BINARY)[1]
  
 # find contours in the thresholded image and initialize the
 # shape detector
@@ -77,6 +77,7 @@ sd = ShapeDetector()
 
 plt.imshow(thresh),plt.show()
 
+print(cnts)
 # loop over the contours
 for c in cnts:
 	# compute the center of the contour, then detect the name of the

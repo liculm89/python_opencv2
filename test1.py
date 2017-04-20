@@ -16,11 +16,16 @@ cv2.ocl.setUseOpenCL(False)
 img1 = cv2.imread('ring_cad2.jpg', 0)
 img2 = cv2.imread('uzorak1.jpg', 0)
 
-orb = cv2.ORB_create()
+
+#gray1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
+#blurred1 = cv2.GaussianBlur(gray1, (3, 3), 0)
+
+detector = cv2.AKAZE_create()
+#detector = cv2.ORB_create()
 
 
-kp1, des1 = orb.detectAndCompute(img1, None)
-kp2, des2 = orb.detectAndCompute(img2, None)
+kp1, des1 = detector.detectAndCompute(img1, None)
+kp2, des2 = detector.detectAndCompute(img2, None)
 
 bf = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True)
 
@@ -37,6 +42,6 @@ draw_params = dict(matchColor = (0,255,0),
                    flags = 0)
 
 # Draw first 10 matches.
-img3 = cv2.drawMatches(img1,kp1,img2,kp2, matches[:10], None, flags=2)
+img3 = cv2.drawMatches(img1,kp1,img2,kp2, matches[:20], None, flags=2)
 
 plt.imshow(img3),plt.show()
