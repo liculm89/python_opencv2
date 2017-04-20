@@ -11,8 +11,9 @@ import matplotlib
 print(matplotlib.matplotlib_fname())
 #matplotlib.use("Agg") 
 from matplotlib import pyplot as plt
+cv2.ocl.setUseOpenCL(False)
 
-img1 = cv2.imread('ring_cad1.jpg', 0)
+img1 = cv2.imread('ring_cad2.jpg', 0)
 img2 = cv2.imread('uzorak1.jpg', 0)
 
 orb = cv2.ORB_create()
@@ -36,6 +37,6 @@ draw_params = dict(matchColor = (0,255,0),
                    flags = 0)
 
 # Draw first 10 matches.
-img3 = cv2.drawMatches(img1,kp1,img2,kp2, matches[:5], None, flags=2)
+img3 = cv2.drawMatches(img1,kp1,img2,kp2, matches[:10], None, flags=2)
 
 plt.imshow(img3),plt.show()
