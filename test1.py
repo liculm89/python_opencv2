@@ -14,7 +14,7 @@ from matplotlib import pyplot as plt
 cv2.ocl.setUseOpenCL(False)
 
 img1 = cv2.imread('ring_cad2.jpg', 0)
-img2 = cv2.imread('uzorak1.jpg', 0)
+img2 = cv2.imread('uzorak2.jpg', 0)
 
 
 #gray1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
@@ -27,7 +27,7 @@ detector = cv2.AKAZE_create()
 kp1, des1 = detector.detectAndCompute(img1, None)
 kp2, des2 = detector.detectAndCompute(img2, None)
 
-bf = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True)
+bf = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=False)
 
 
 matches = bf.match(des1,des2)

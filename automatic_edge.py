@@ -45,6 +45,21 @@ tight = cv2.Canny(blurred, 225, 250)
 auto = auto_canny(blurred)
  
 	# show the images
-cv2.imshow("Original", image)
+#cv2.imshow("Original", image)
 cv2.imshow("Edges", np.hstack([wide, tight, auto]))
+
+circles = cv2.HoughCircles(gray,cv2.HOUGH_GRADIENT,1,20)
+
+circles = np.uint16(np.around(circles))
+for i in circles[0,:]:
+    # draw the outer circle
+    cv2.circle(auto,(i[0],i[1]),i[2],(0,255,0),2)
+    # draw the center of the circle
+    cv2.circle(auto,(i[0],i[1]),2,(0,0,255),3)
+
+cv2.imshow('detected circles',auto)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+
 cv2.waitKey(0)
